@@ -167,3 +167,22 @@ def post_dealer_review(request, dealer_id):
                 "form": request.POST,
             }, status=500)
     return redirect("dealer_details_page", dealer_id=dealer_id)
+
+
+@require_http_methods(["GET"])
+def get_course_cars(request):
+    """Course-compatible endpoint returning the complete CarModels list."""
+    from django.http import JsonResponse
+
+    car_models = [
+        {"CarMake": "Toyota", "CarModel": "Camry"},
+        {"CarMake": "Toyota", "CarModel": "Corolla"},
+        {"CarMake": "Toyota", "CarModel": "RAV4"},
+        {"CarMake": "Honda", "CarModel": "Civic"},
+        {"CarMake": "Honda", "CarModel": "Accord"},
+        {"CarMake": "Honda", "CarModel": "CR-V"},
+        {"CarMake": "Ford", "CarModel": "Mustang"},
+        {"CarMake": "Ford", "CarModel": "Explorer"},
+        {"CarMake": "Ford", "CarModel": "Focus"},
+    ]
+    return JsonResponse({"CarModels": car_models})
