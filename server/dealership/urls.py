@@ -3,6 +3,12 @@ from django.shortcuts import render
 from .api_views import _read_dealers
 from django.urls import path
 from .api_views import (login_user, logout_user, get_dealer_reviews,
+from .views import get_cars, get_course_cars
+from .views import analyze_review, analyze_review_path
+from .views import user_login_page, user_logout_page
+from django.http import Http404
+from .views import post_dealer_review
+
                         get_all_dealers, get_dealer_by_id, get_dealers_by_state)
 
 
@@ -29,28 +35,24 @@ urlpatterns = [
     path("get_dealers/state/<str:state>", get_dealers_by_state, name="get_dealers_by_state"),
 ]
 
-from .views import get_cars, get_course_cars
 
 urlpatterns += [
     path("get_cars", get_cars, name="get_cars"),
     path("djangoapp/get_cars", get_course_cars, name="djangoapp_get_cars"),
 ]
 
-from .views import analyze_review, analyze_review_path
 
 urlpatterns += [
     path("analyze_review", analyze_review, name="analyze_review"),
     path("analyze/<path:review_text>", analyze_review_path, name="analyze_review_path"),
 ]
 
-from .views import user_login_page, user_logout_page
 
 urlpatterns += [
     path("user-login/", user_login_page, name="user_login_page"),
     path("user-logout/", user_logout_page, name="user_logout_page"),
 ]
 
-from django.http import Http404
 
 def dealer_details_page(request, dealer_id):
     dealer = next((d for d in (_read_dealers() or []) if d.get("id") == dealer_id), None)
@@ -73,7 +75,6 @@ urlpatterns += [
     path("dealers/<int:dealer_id>/", dealer_details_page, name="dealer_details_page"),
 ]
 
-from .views import post_dealer_review
 
 urlpatterns += [
     path("dealers/<int:dealer_id>/review/", post_dealer_review, name="post_dealer_review"),
