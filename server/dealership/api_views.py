@@ -32,7 +32,7 @@ def login_user(request):
     if user is None or not user.is_active:
         return JsonResponse({"message": "Invalid username or password"}, status=401)
     login(request, user)
-    return JsonResponse({"message": "Login successful", "username": user.get_username()})
+    return JsonResponse({"userName": user.get_username(), "status": "Authenticated", "message": "Login successful", "username": user.get_username()})
 
 
 @csrf_exempt
