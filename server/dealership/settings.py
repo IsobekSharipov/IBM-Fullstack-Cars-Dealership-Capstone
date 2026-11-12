@@ -27,7 +27,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = "dealership.urls"
 TEMPLATES = [{
     "BACKEND": "django.template.backends.django.DjangoTemplates",
-    "DIRS": [BASE_DIR / "frontend" / "static"],
+    "DIRS": [BASE_DIR / "templates", BASE_DIR / "frontend" / "static"],
     "APP_DIRS": True,
     "OPTIONS": {"context_processors": [
         "django.template.context_processors.debug",
