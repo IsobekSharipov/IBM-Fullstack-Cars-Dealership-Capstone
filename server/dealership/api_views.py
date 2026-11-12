@@ -1,9 +1,10 @@
 import json
+from pathlib import Path
 
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_GET, require_POST
 
 
 def _read_credentials(request):
@@ -42,3 +43,20 @@ def logout_user(request):
         return JsonResponse({"message": "Not logged in"}, status=401)
     logout(request)
     return JsonResponse({"message": "Logout successful"})
+
+
+@require_GET
+def get_dealer_reviews(request, dealer_id):
+    """Return stored reviews for a dealer, as JSON."""
+    reviews_path = Path(__file__).resolve().parent / "dealer_reviews.json"
+    if not reviews_path.exists():
+        return JsonResponse([], safe=False)
+    try:
+        with reviews_path.open(encoding="utf-8") as source:
+            reviews = json.load(source)
+    except (OSError, json.JSONDecodeError):
+        return JsonResponse({"message": "Review data unavailable"}, status=500)
+    if not isinstance(reviews, list):
+        return JsonResponse({"message": "Invalid review data"}, status=500)
+    filtered = [review for review in reviews if isinstance(review, dict) and str(review.get("dealership")) == str(dealer_id)]
+    return JsonResponse(filtered, safe=False)
