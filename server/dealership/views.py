@@ -186,3 +186,17 @@ def get_course_cars(request):
         {"CarMake": "Ford", "CarModel": "Focus"},
     ]
     return JsonResponse({"CarModels": car_models})
+
+
+@require_http_methods(["GET"])
+def analyze_review_path(request, review_text):
+    """Sentiment analysis for the course-required /analyze/<review> URL."""
+    from django.http import JsonResponse
+
+    positive_words = ("fantastic", "excellent", "great", "good", "amazing")
+    negative_words = ("bad", "poor", "terrible", "awful", "worst")
+    normalized = review_text.casefold()
+    sentiment = ("positive" if any(word in normalized for word in positive_words)
+                 else "negative" if any(word in normalized for word in negative_words)
+                 else "neutral")
+    return JsonResponse({"review": review_text, "sentiment": sentiment})
