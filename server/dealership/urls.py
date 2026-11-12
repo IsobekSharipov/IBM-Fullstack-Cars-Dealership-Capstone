@@ -36,10 +36,11 @@ urlpatterns += [
     path("djangoapp/get_cars", get_course_cars, name="djangoapp_get_cars"),
 ]
 
-from .views import analyze_review
+from .views import analyze_review, analyze_review_path
 
 urlpatterns += [
     path("analyze_review", analyze_review, name="analyze_review"),
+    path("analyze/<path:review_text>", analyze_review_path, name="analyze_review_path"),
 ]
 
 from .views import user_login_page, user_logout_page
