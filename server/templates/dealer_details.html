@@ -22,7 +22,7 @@
 {% for review in reviews %}
 <div class="card mb-3"><div class="card-body">
 <h3 class="h6">{{ review.name|default:"Customer" }}</h3>
-<p class="mb-2">{{ review.review|default:review.review_text|default:"Review submitted." }}</p>
+<p class="mb-2">{{ review.review|default:"Review submitted." }}</p>
 {% if review.sentiment %}<span class="badge bg-info text-dark">{{ review.sentiment }}</span>{% endif %}
 </div></div>
 {% empty %}<div class="alert alert-secondary">No customer reviews have been posted for this dealership yet.</div>{% endfor %}
