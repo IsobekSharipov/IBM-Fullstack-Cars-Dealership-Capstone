@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ dealer.full_name }} | Cars Dealership</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"></head>
+<body class="bg-light">
+<nav class="navbar navbar-dark bg-dark px-4"><a class="navbar-brand" href="/">Cars Dealership</a>
+{% if user.is_authenticated %}<span class="text-white">Welcome, {{ user.username }}</span>{% endif %}</nav>
+<main class="container py-5">
+<a href="/" class="btn btn-outline-secondary mb-4">Back to Dealerships</a>
+<div class="card shadow-sm mb-4"><div class="card-body">
+<h1 class="h2">{{ dealer.full_name }}</h1>
+<p class="text-muted">{{ dealer.short_name }}</p>
+<dl class="row">
+<dt class="col-sm-3">City</dt><dd class="col-sm-9">{{ dealer.city }}</dd>
+<dt class="col-sm-3">State</dt><dd class="col-sm-9">{{ dealer.state }} ({{ dealer.st }})</dd>
+<dt class="col-sm-3">Address</dt><dd class="col-sm-9">{{ dealer.address }}</dd>
+<dt class="col-sm-3">ZIP</dt><dd class="col-sm-9">{{ dealer.zip }}</dd>
+</dl>
+{% if user.is_authenticated %}<a class="btn btn-success" href="/dealers/{{ dealer.id }}/review/">Review Dealer</a>{% endif %}
+</div></div>
+<h2 class="h3 mb-3">Customer Reviews</h2>
+{% for review in reviews %}
+<div class="card mb-3"><div class="card-body">
+<h3 class="h6">{{ review.name|default:"Customer" }}</h3>
+<p class="mb-2">{{ review.review|default:review.review_text|default:"Review submitted." }}</p>
+{% if review.sentiment %}<span class="badge bg-info text-dark">{{ review.sentiment }}</span>{% endif %}
+</div></div>
+{% empty %}<div class="alert alert-secondary">No customer reviews have been posted for this dealership yet.</div>{% endfor %}
+</main></body></html>
