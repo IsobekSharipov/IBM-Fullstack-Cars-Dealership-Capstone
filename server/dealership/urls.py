@@ -43,3 +43,26 @@ urlpatterns += [
     path("user-login/", user_login_page, name="user_login_page"),
     path("user-logout/", user_logout_page, name="user_logout_page"),
 ]
+
+from django.http import Http404
+
+def dealer_details_page(request, dealer_id):
+    dealer = next((d for d in (_read_dealers() or []) if d.get("id") == dealer_id), None)
+    if dealer is None:
+        raise Http404("Dealer not found")
+    from pathlib import Path
+    import json
+    reviews_file = Path(__file__).resolve().parent / "dealer_reviews.json"
+    reviews = []
+    if reviews_file.exists():
+        try:
+            data = json.loads(reviews_file.read_text(encoding="utf-8"))
+            if isinstance(data, list):
+                reviews = [item for item in data if isinstance(item, dict) and str(item.get("dealership")) == str(dealer_id)]
+        except (OSError, ValueError):
+            pass
+    return render(request, "dealer_details.html", {"dealer": dealer, "reviews": reviews})
+
+urlpatterns += [
+    path("dealers/<int:dealer_id>/", dealer_details_page, name="dealer_details_page"),
+]
