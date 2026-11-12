@@ -66,3 +66,9 @@ def dealer_details_page(request, dealer_id):
 urlpatterns += [
     path("dealers/<int:dealer_id>/", dealer_details_page, name="dealer_details_page"),
 ]
+
+from .views import post_dealer_review
+
+urlpatterns += [
+    path("dealers/<int:dealer_id>/review/", post_dealer_review, name="post_dealer_review"),
+]
