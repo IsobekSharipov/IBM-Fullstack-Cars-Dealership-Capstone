@@ -1,3 +1,16 @@
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect, render
+from django.views.decorators.http import require_http_methods, require_POST
+from datetime import date
+from pathlib import Path
+import json
+import os
+import tempfile
+import threading
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
+from django.views.decorators.http import require_http_methods
+from .api_views import _read_dealers
 
 def get_cars(request):
     from django.http import JsonResponse
@@ -56,9 +69,6 @@ def analyze_review(request):
         "sentiment": sentiment
     })
 
-from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import redirect, render
-from django.views.decorators.http import require_http_methods, require_POST
 
 @require_http_methods(["GET", "POST"])
 def user_login_page(request):
@@ -81,17 +91,7 @@ def user_logout_page(request):
     logout(request)
     return redirect("home")
 
-from datetime import date
-from pathlib import Path
-import json
-import os
-import tempfile
-import threading
 
-from django.contrib.auth.decorators import login_required
-from django.http import Http404
-from django.views.decorators.http import require_http_methods
-from .api_views import _read_dealers
 
 _review_write_lock = threading.Lock()
 
