@@ -31,3 +31,10 @@ from .views import analyze_review
 urlpatterns += [
     path("analyze_review", analyze_review, name="analyze_review"),
 ]
+
+from .views import user_login_page, user_logout_page
+
+urlpatterns += [
+    path("user-login/", user_login_page, name="user_login_page"),
+    path("user-logout/", user_logout_page, name="user_logout_page"),
+]
