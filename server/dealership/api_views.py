@@ -60,3 +60,44 @@ def get_dealer_reviews(request, dealer_id):
         return JsonResponse({"message": "Invalid review data"}, status=500)
     filtered = [review for review in reviews if isinstance(review, dict) and str(review.get("dealership")) == str(dealer_id)]
     return JsonResponse(filtered, safe=False)
+
+
+def _read_dealers():
+    path = Path(__file__).resolve().parent / "dealers.json"
+    try:
+        with path.open(encoding="utf-8") as source:
+            dealers = json.load(source)
+        if isinstance(dealers, list):
+            return dealers
+    except (OSError, json.JSONDecodeError):
+        pass
+    return None
+
+
+@require_GET
+def get_all_dealers(request):
+    dealers = _read_dealers()
+    if dealers is None:
+        return JsonResponse({"message": "Dealer data unavailable"}, status=500)
+    return JsonResponse(dealers, safe=False)
+
+
+@require_GET
+def get_dealer_by_id(request, dealer_id):
+    dealers = _read_dealers()
+    if dealers is None:
+        return JsonResponse({"message": "Dealer data unavailable"}, status=500)
+    for dealer in dealers:
+        if dealer.get("id") == dealer_id:
+            return JsonResponse(dealer)
+    return JsonResponse({"message": "Dealer not found"}, status=404)
+
+
+@require_GET
+def get_dealers_by_state(request, state):
+    dealers = _read_dealers()
+    if dealers is None:
+        return JsonResponse({"message": "Dealer data unavailable"}, status=500)
+    state = state.strip().casefold()
+    matches = [dealer for dealer in dealers if dealer.get("state", "").casefold() == state or dealer.get("st", "").casefold() == state]
+    return JsonResponse(matches, safe=False)
