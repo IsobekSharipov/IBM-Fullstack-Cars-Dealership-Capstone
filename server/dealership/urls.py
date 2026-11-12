@@ -29,10 +29,11 @@ urlpatterns = [
     path("get_dealers/state/<str:state>", get_dealers_by_state, name="get_dealers_by_state"),
 ]
 
-from .views import get_cars
+from .views import get_cars, get_course_cars
 
 urlpatterns += [
     path("get_cars", get_cars, name="get_cars"),
+    path("djangoapp/get_cars", get_course_cars, name="djangoapp_get_cars"),
 ]
 
 from .views import analyze_review
