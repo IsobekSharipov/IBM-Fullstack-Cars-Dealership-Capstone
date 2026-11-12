@@ -22,6 +22,7 @@ urlpatterns = [
     path("logout", logout_user, name="logout_user"),
     path("djangoapp/logout", logout_user, name="djangoapp_logout"),
     path("get_reviews/<int:dealer_id>", get_dealer_reviews, name="get_dealer_reviews"),
+    path("fetchReviews/dealer/<int:dealer_id>", get_dealer_reviews, name="fetch_dealer_reviews"),
     path("get_dealers", get_all_dealers, name="get_all_dealers"),
     path("get_dealers/<int:dealer_id>", get_dealer_by_id, name="get_dealer_by_id"),
     path("get_dealers/state/<str:state>", get_dealers_by_state, name="get_dealers_by_state"),
