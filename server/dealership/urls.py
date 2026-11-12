@@ -7,7 +7,11 @@ from .api_views import (login_user, logout_user, get_dealer_reviews,
 
 
 def home(request):
-    return render(request, "home.html", {"dealers": _read_dealers() or []})
+    dealers = _read_dealers() or []
+    state = request.GET.get("state", "").strip()
+    if state:
+        dealers = [d for d in dealers if d.get("state", "").casefold() == state.casefold() or d.get("st", "").casefold() == state.casefold()]
+    return render(request, "home.html", {"dealers": dealers, "selected_state": state})
 
 
 urlpatterns = [
