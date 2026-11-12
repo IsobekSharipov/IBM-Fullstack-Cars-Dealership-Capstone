@@ -1,12 +1,13 @@
 from django.contrib import admin
-from django.http import HttpResponse
+from django.shortcuts import render
+from .api_views import _read_dealers
 from django.urls import path
 from .api_views import (login_user, logout_user, get_dealer_reviews,
                         get_all_dealers, get_dealer_by_id, get_dealers_by_state)
 
 
 def home(request):
-    return HttpResponse("<h1>Cars Dealership</h1><p>Django server is running.</p>")
+    return render(request, "home.html", {"dealers": _read_dealers() or []})
 
 
 urlpatterns = [
