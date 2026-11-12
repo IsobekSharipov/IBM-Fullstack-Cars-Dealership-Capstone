@@ -19,3 +19,9 @@ urlpatterns = [
     path("get_dealers/<int:dealer_id>", get_dealer_by_id, name="get_dealer_by_id"),
     path("get_dealers/state/<str:state>", get_dealers_by_state, name="get_dealers_by_state"),
 ]
+
+from .views import get_cars
+
+urlpatterns += [
+    path("get_cars", get_cars, name="get_cars"),
+]
