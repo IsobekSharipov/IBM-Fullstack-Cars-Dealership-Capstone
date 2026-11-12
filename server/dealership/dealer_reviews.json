@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "dealership": 1,
+    "name": "Demo Customer A",
+    "purchase": "2026-01-15",
+    "review": "The staff explained the vehicle features clearly and answered my questions.",
+    "purchase_date": "2026-01-15",
+    "car_make": "Toyota",
+    "car_model": "Corolla",
+    "car_year": 2023,
+    "sentiment": "positive",
+    "demo": true
+  },
+  {
+    "id": 2,
+    "dealership": 1,
+    "name": "Demo Customer B",
+    "purchase": "2026-02-10",
+    "review": "The appointment started late, but the team resolved the issue.",
+    "purchase_date": "2026-02-10",
+    "car_make": "Honda",
+    "car_model": "Civic",
+    "car_year": 2022,
+    "sentiment": "neutral",
+    "demo": true
+  },
+  {
+    "id": 3,
+    "dealership": 2,
+    "name": "Demo Customer C",
+    "purchase": "2026-03-02",
+    "review": "The paperwork was straightforward and the service was helpful.",
+    "purchase_date": "2026-03-02",
+    "car_make": "Ford",
+    "car_model": "Focus",
+    "car_year": 2021,
+    "sentiment": "positive",
+    "demo": true
+  }
+]
