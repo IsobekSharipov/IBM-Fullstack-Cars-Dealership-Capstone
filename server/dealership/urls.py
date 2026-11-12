@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.http import HttpResponse
 from django.urls import path
-from .api_views import login_user, logout_user, get_dealer_reviews
+from .api_views import (login_user, logout_user, get_dealer_reviews,
+                        get_all_dealers, get_dealer_by_id, get_dealers_by_state)
 
 
 def home(request):
@@ -14,4 +15,7 @@ urlpatterns = [
     path("login", login_user, name="login_user"),
     path("logout", logout_user, name="logout_user"),
     path("get_reviews/<int:dealer_id>", get_dealer_reviews, name="get_dealer_reviews"),
+    path("get_dealers", get_all_dealers, name="get_all_dealers"),
+    path("get_dealers/<int:dealer_id>", get_dealer_by_id, name="get_dealer_by_id"),
+    path("get_dealers/state/<str:state>", get_dealers_by_state, name="get_dealers_by_state"),
 ]
