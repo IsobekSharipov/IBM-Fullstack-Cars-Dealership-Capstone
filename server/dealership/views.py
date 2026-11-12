@@ -55,3 +55,28 @@ def analyze_review(request):
         "review": review,
         "sentiment": sentiment
     })
+
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect, render
+from django.views.decorators.http import require_http_methods, require_POST
+
+@require_http_methods(["GET", "POST"])
+def user_login_page(request):
+    if request.user.is_authenticated:
+        return redirect("home")
+    if request.method == "POST":
+        user = authenticate(
+            request,
+            username=request.POST.get("username", ""),
+            password=request.POST.get("password", ""),
+        )
+        if user is not None and user.is_active:
+            login(request, user)
+            return redirect("home")
+        return render(request, "login.html", {"error": "Invalid username or password."}, status=401)
+    return render(request, "login.html")
+
+@require_POST
+def user_logout_page(request):
+    logout(request)
+    return redirect("home")
