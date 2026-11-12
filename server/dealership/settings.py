@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "development-only-change-before-deployment")
 DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() == "true"
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".app.github.dev"]
-CSRF_TRUSTED_ORIGINS = ["https://*.app.github.dev"]
+CSRF_TRUSTED_ORIGINS = ["https://*.app.github.dev", "https://localhost:8000", "http://localhost:8000"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
