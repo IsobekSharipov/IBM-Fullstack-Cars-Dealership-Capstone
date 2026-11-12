@@ -1,0 +1,39 @@
+name: Python and JavaScript Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  python-lint:
+    name: Python lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Python linter
+        run: python -m pip install ruff
+      - name: Run Linter (Python)
+        run: ruff check server --select E4,E7,E9,F63,F7,F82
+
+  javascript-lint:
+    name: JavaScript lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install JavaScript linter
+        run: npm install --no-save --no-package-lock eslint@9
+      - name: Run Linter (JavaScript)
+        run: npx eslint --no-config-lookup --no-ignore --rule 'no-unused-vars:error' --rule 'no-undef:error' --global document:readonly server/frontend/static/js/review-form.js
