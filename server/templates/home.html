@@ -21,6 +21,19 @@
 <h1>Welcome to Cars Dealership</h1>
 <p>Find the best dealerships across the United States.</p>
 <h3 class="mt-4 mb-3">Available Dealerships</h3>
+<form method="get" action="/" class="row g-2 align-items-end mb-4">
+<div class="col-md-5">
+<label for="state" class="form-label">Filter dealerships by State</label>
+<select id="state" name="state" class="form-select">
+<option value="">All States</option>
+<option value="Kansas" {% if selected_state == "Kansas" %}selected{% endif %}>Kansas</option>
+<option value="Texas" {% if selected_state == "Texas" %}selected{% endif %}>Texas</option>
+<option value="Colorado" {% if selected_state == "Colorado" %}selected{% endif %}>Colorado</option>
+</select></div>
+<div class="col-auto"><button class="btn btn-primary" type="submit">Filter</button></div>
+<div class="col-auto"><a class="btn btn-outline-secondary" href="/">Clear</a></div>
+</form>
+{% if selected_state %}<p class="text-muted">Showing dealerships in {{ selected_state }}</p>{% endif %}
 <div class="row">
 {% for dealer in dealers %}
 <div class="col-md-4 mb-4"><div class="card h-100 shadow-sm"><div class="card-body">
