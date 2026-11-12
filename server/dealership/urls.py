@@ -18,6 +18,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", home, name="home"),
     path("login", login_user, name="login_user"),
+    path("djangoapp/login", login_user, name="djangoapp_login"),
     path("logout", logout_user, name="logout_user"),
     path("get_reviews/<int:dealer_id>", get_dealer_reviews, name="get_dealer_reviews"),
     path("get_dealers", get_all_dealers, name="get_all_dealers"),
