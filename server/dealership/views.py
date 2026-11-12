@@ -33,3 +33,25 @@ def get_cars(request):
     ]
 
     return JsonResponse(cars, safe=False)
+
+def analyze_review(request):
+    from django.http import JsonResponse
+
+    review = request.GET.get("text", "")
+
+    positive_words = ["fantastic", "excellent", "great", "good", "amazing"]
+    negative_words = ["bad", "poor", "terrible", "awful", "worst"]
+
+    text = review.lower()
+
+    if any(word in text for word in positive_words):
+        sentiment = "positive"
+    elif any(word in text for word in negative_words):
+        sentiment = "negative"
+    else:
+        sentiment = "neutral"
+
+    return JsonResponse({
+        "review": review,
+        "sentiment": sentiment
+    })

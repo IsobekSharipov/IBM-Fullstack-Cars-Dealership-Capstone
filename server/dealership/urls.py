@@ -25,3 +25,9 @@ from .views import get_cars
 urlpatterns += [
     path("get_cars", get_cars, name="get_cars"),
 ]
+
+from .views import analyze_review
+
+urlpatterns += [
+    path("analyze_review", analyze_review, name="analyze_review"),
+]
