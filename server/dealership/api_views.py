@@ -35,14 +35,11 @@ def login_user(request):
     return JsonResponse({"userName": user.get_username(), "status": "Authenticated", "message": "Login successful", "username": user.get_username()})
 
 
-@csrf_exempt
-@require_POST
+@require_GET
 def logout_user(request):
-    """JSON logout endpoint for the course's cURL API exercise."""
-    if not request.user.is_authenticated:
-        return JsonResponse({"message": "Not logged in"}, status=401)
+    """Log out the current session and return the course-required response."""
     logout(request)
-    return JsonResponse({"message": "Logout successful"})
+    return JsonResponse({"userName": "", "status": "Logged out", "message": "Logout successful"})
 
 
 @require_GET
