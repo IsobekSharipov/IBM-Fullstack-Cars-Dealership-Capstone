@@ -2,14 +2,15 @@ from django.contrib import admin
 from django.shortcuts import render
 from .api_views import _read_dealers
 from django.urls import path
-from .api_views import (login_user, logout_user, get_dealer_reviews,
+from .api_views import (
+    login_user, logout_user, get_dealer_reviews,
+    get_all_dealers, get_dealer_by_id, get_dealers_by_state,
+)
 from .views import get_cars, get_course_cars
 from .views import analyze_review, analyze_review_path
 from .views import user_login_page, user_logout_page
 from django.http import Http404
 from .views import post_dealer_review
-
-                        get_all_dealers, get_dealer_by_id, get_dealers_by_state)
 
 
 def home(request):
