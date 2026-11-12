@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact the Cars Dealership team for dealership and customer service questions.">
+  <title>Contact Us | Cars Dealership</title>
+  <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+  <header>
+    <div class="brand">Cars Dealership</div>
+    <nav aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/dealers">Dealers</a>
+      <a href="About.html">About Us</a>
+      <a class="active" href="Contact.html" aria-current="page">Contact Us</a>
+    </nav>
+  </header>
+  <main>
+    <section class="intro">
+      <h1>Contact Us</h1>
+      <p>Have a question about finding a dealership or sharing a review? Our customer support team is here to help.</p>
+    </section>
+    <div class="layout">
+      <section class="panel" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Get in Touch</h2>
+        <div class="detail"><strong>Customer Support Email</strong><a href="mailto:support@example.com">support@example.com</a></div>
+        <div class="detail"><strong>Business Inquiries</strong><a href="mailto:business@example.com">business@example.com</a></div>
+        <div class="detail"><strong>Phone (demonstration)</strong>+1 (555) 010-2026</div>
+        <div class="detail"><strong>Office Location (demonstration)</strong>United States — online customer support</div>
+        <div class="detail"><strong>Support Hours (demonstration)</strong>Monday–Friday, 9:00 AM–5:00 PM (ET)</div>
+        <img class="photo" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Modern office interior representing the Cars Dealership customer support team" loading="lazy">
+        <p class="note">This is an educational capstone demonstration. Contact details are illustrative, not active customer-service channels.</p>
+      </section>
+      <section class="panel" aria-labelledby="message-heading">
+        <h2 id="message-heading">Send Us a Message</h2>
+        <p>Use the email address above to reach the demonstration team. The fields below show the planned contact form layout.</p>
+        <form aria-label="Contact form demonstration" onsubmit="return false;">
+          <label for="full-name">Full Name</label>
+          <input id="full-name" name="name" type="text" placeholder="Your full name" autocomplete="name" required>
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          <label for="subject">Subject</label>
+          <input id="subject" name="subject" type="text" placeholder="How can we help?" required>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Write your message..." required></textarea>
+          <button type="button" disabled title="Demo only: message delivery is not configured">Send Message (Demo Only)</button>
+          <p class="note">This form is a visual demo; message submission is not connected to a backend.</p>
+        </form>
+      </section>
+    </div>
+  </main>
+  <footer>&copy; 2026 Cars Dealership. Educational capstone project.</footer>
+</body>
+</html>
