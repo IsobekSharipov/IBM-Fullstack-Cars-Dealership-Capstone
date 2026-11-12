@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "full_name": "Prairie Auto Center",
+    "short_name": "Prairie Auto",
+    "city": "Wichita",
+    "state": "Kansas",
+    "st": "KS",
+    "address": "100 Example Avenue, Wichita, KS",
+    "zip": "67202",
+    "lat": 37.6872,
+    "long": -97.3301
+  },
+  {
+    "id": 2,
+    "full_name": "Sunflower Motors",
+    "short_name": "Sunflower",
+    "city": "Topeka",
+    "state": "Kansas",
+    "st": "KS",
+    "address": "200 Sample Street, Topeka, KS",
+    "zip": "66603",
+    "lat": 39.0473,
+    "long": -95.6752
+  },
+  {
+    "id": 3,
+    "full_name": "Lakeside Car Sales",
+    "short_name": "Lakeside",
+    "city": "Austin",
+    "state": "Texas",
+    "st": "TX",
+    "address": "300 Demo Road, Austin, TX",
+    "zip": "78701",
+    "lat": 30.2672,
+    "long": -97.7431
+  },
+  {
+    "id": 4,
+    "full_name": "Mountain View Autos",
+    "short_name": "Mountain View",
+    "city": "Denver",
+    "state": "Colorado",
+    "st": "CO",
+    "address": "400 Test Boulevard, Denver, CO",
+    "zip": "80202",
+    "lat": 39.7392,
+    "long": -104.9903
+  }
+]
