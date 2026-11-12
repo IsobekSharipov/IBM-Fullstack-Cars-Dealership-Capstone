@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.http import HttpResponse
 from django.urls import path
-from .api_views import login_user, logout_user
+from .api_views import login_user, logout_user, get_dealer_reviews
 
 
 def home(request):
@@ -13,4 +13,5 @@ urlpatterns = [
     path("", home, name="home"),
     path("login", login_user, name="login_user"),
     path("logout", logout_user, name="logout_user"),
+    path("get_reviews/<int:dealer_id>", get_dealer_reviews, name="get_dealer_reviews"),
 ]
