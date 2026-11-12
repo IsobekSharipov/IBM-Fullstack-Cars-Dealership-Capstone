@@ -1,3 +1,4 @@
+/* global document */
 "use strict";
 
 // Progressive enhancement: show how many characters remain in a review.
